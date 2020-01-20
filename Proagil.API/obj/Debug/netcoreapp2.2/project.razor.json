@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\Aerty\\Desktop\\DOTNETCORE\\Proagil.API\\Proagil.API.csproj",
+  "FilePath": "c:\\Users\\Aerty\\Desktop\\DOTNETCORE\\ProAgil.API\\ProAgil.API.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -2958,7 +2958,7 @@
     ],
     "CSharpLanguageVersion": 703
   },
-  "RootNamespace": "Proagil.API",
+  "RootNamespace": "ProAgil.API",
   "Documents": [],
   "SerializationFormat": "0.2"
 }

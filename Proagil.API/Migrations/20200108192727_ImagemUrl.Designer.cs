@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Proagil.API.Data;
+using Proagil.Repository;
 
 namespace Proagil.API.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(ProAgilContext))]
     [Migration("20200108192727_ImagemUrl")]
     partial class ImagemUrl
     {

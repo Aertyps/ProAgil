@@ -1,9 +1,71 @@
-<p>
-  eventos works!
-</p>
-<div *ngFor="let evento of eventos">
-  Tema:{{evento.tema}}
-  <br>
-  Local:{{evento.local}}
-  <hr>
+<div class = "container">
+<div class = "form-inline">
+<div class ="form-group mb-2">
+  <input type ="text" class="form-control.mr-2" 
+  placeholder="buscar"
+  [(ngModel)]= "filtroLista">
+  
+  </div>
+  </div>
+  <h1>Filtro : {{filtroLista}}</h1>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th><button class="btn btn-outline-primary"
+          (click)=alternarImagem()><i class="{{mostrarImagem ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i></button></th>
+        <th>#</th>
+        <th>Tema</th>
+        <th>Local</th>
+        <th>Data</th>
+        <th>Qtd</th>
+        <th>Lote</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngIf ="eventos && eventosFiltrados.length"> 
+      <tr *ngFor="let evento of eventosFiltrados">
+        <td>
+          <img *ngIf ="mostrarImagem"
+           src = "http://localhost:5000/img/{{evento.imagemUrl}}"
+          [style.width.px] = "imagemAltura"
+          [style.margin.px] = "imagemMargem">
+        </td>
+      <td>{{evento.id}}</td>
+      <td>{{evento.tema}}</td>
+      <td>{{evento.local}}</td>
+      <td>{{evento.dataEvento | DateTimeFormatPipe}}</td>
+      <td>{{evento.qtdPessoas}}</td>
+      <td>
+        <div *ngIf="!evento.lotes.length">Nao informado</div>
+        <div *ngIf="evento.lotes.length">{{evento.lotes[0].nome}}</div>
+      </td>
+      <td>
+        <div class="btn-group"> 
+          <body class="btn btn-primary" tooltip="Editar" (click)="openModal(template)">
+          <i class="fa fa-edit"></i>
+        </body>
+        <body class ="btn btn-danger" tooltip="Excluir">
+          <i class ="fa fa-eraser"></i>
+        </body></div>
+       
+      </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!eventos.length">
+      <tr>
+        <h4>
+          Nenhum evento encontrado
+        </h4>
+      </tr>
+
+    </tfoot>
+  </table>
+  <ng-template #template>
+    <div class ="modal-header">
+      <h4 class="modal-title pull-left">Modal
+      </h4>
+      <button></button>
+  
+    </div>
+  </ng-template>
 </div>

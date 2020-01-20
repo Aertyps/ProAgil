@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { EventoService } from '../_services/evento.service';
+import { Evento } from '../_modules/Evento';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+
 
 @Component({
   selector: 'app-eventos',
@@ -8,15 +11,46 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventosComponent implements OnInit {
 
-  eventos: any ;
-  constructor(private http: HttpClient) {
+  filtroList: string;
+  get filtroLista(): string {
+    return this.filtroList;
   }
+  set filtroLista(value: string) {
+    this.filtroList = value;
+    this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
+  }
+  eventosFiltrados: Evento[];
+  eventos: Evento[];
+  imagemAltura = 50;
+  imagemMargem =  2;
+  mostrarImagem = false;
+  modalRef: BsModalRef;
+
+  constructor( private eventoService: EventoService, private modalService: BsModalService) {
+  }
+
   ngOnInit() {
     this.getEventos();
   }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  filtrarEventos(filtrarPor: string): Evento[] {
+    filtrarPor = filtrarPor.toLocaleLowerCase();
+    return this.eventos.filter(
+      evento => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+    );
+  }
+  alternarImagem() {
+    this.mostrarImagem = !this.mostrarImagem;
+  }
   getEventos() {
-    this.http.get('http://localhost:5000/site/values').subscribe(response => {
-      this.eventos = response; console.log(); }, error => { console.log(error);
+    this.eventoService.getAllEvento().subscribe(
+      ( _eventos: Evento[]) => {
+      this.eventos = _eventos; console.log(_eventos); },
+       error => { console.log(error);
   });
 
   }
