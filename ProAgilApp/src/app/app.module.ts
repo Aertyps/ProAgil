@@ -11,13 +11,19 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DateTimeFormatPipePipe } from './_helps/DateTimeFormatPipe.pipe';
 import { EventoService } from './_services/evento.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashbordComponent } from './dashbord/dashbord.component';
+import { PalestranteComponent } from './palestrante/palestrante.component';
+import { ContatosComponent } from './contatos/contatos.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       EventosComponent,
       NavComponent,
-      DateTimeFormatPipePipe
+      DateTimeFormatPipePipe,
+      DashbordComponent,
+      PalestranteComponent,
+      ContatosComponent
    ],
    imports: [
       BrowserModule,
@@ -32,7 +38,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       ReactiveFormsModule,
       BsDatepickerModule.forRoot()
    ],
-   providers: [EventoService],
+   providers: [
+      EventoService
+   ],
    bootstrap: [
       AppComponent
    ]
