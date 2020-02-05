@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { TooltipModule, BsDropdownModule, ModalModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { EventosComponent } from './eventos/eventos.component';
@@ -14,6 +15,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { PalestranteComponent } from './palestrante/palestrante.component';
 import { ContatosComponent } from './contatos/contatos.component';
+import { UserComponent } from './user/user.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegistrationComponent } from './user/registration/registration.component';
 
 @NgModule({
    declarations: [
@@ -23,7 +27,10 @@ import { ContatosComponent } from './contatos/contatos.component';
       DateTimeFormatPipePipe,
       DashbordComponent,
       PalestranteComponent,
-      ContatosComponent
+      ContatosComponent,
+      UserComponent,
+      LoginComponent,
+      RegistrationComponent
    ],
    imports: [
       BrowserModule,
@@ -36,7 +43,8 @@ import { ContatosComponent } from './contatos/contatos.component';
       FormsModule,
       BrowserAnimationsModule,
       ReactiveFormsModule,
-      BsDatepickerModule.forRoot()
+      BsDatepickerModule.forRoot(),
+      ToastrModule.forRoot() // ToastrModule added
    ],
    providers: [
       EventoService

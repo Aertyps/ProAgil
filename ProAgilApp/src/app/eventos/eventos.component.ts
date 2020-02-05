@@ -82,7 +82,6 @@ export class EventosComponent implements OnInit {
   }
 
   salvarAlteracao(template: any) {
-    
     if ( this.registerForm.valid) {
       this.evento = Object.assign({}, this.registerForm.value);
       this.eventoService.postEvento(this.evento).subscribe(
